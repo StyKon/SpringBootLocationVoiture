@@ -36,9 +36,10 @@ public class Conducteur implements Serializable {
 	private Date  dateCin;
 	@Column(name = "mailConducteur")
 	private String mailConducteur;
-	@CreatedDate
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date  dateCreationConducteur;
+
 	@OneToMany(mappedBy="conducteurs")
 	private List<Contrat> contrat; 
 	public Conducteur() {}
@@ -156,6 +157,10 @@ public class Conducteur implements Serializable {
 
 	public void setDateCreationConducteur(Date dateCreationConducteur) {
 		this.dateCreationConducteur = dateCreationConducteur;
+	}
+	@PrePersist
+	private void onCreate() {
+		dateCreationConducteur = new Date();
 	}
 
 	
