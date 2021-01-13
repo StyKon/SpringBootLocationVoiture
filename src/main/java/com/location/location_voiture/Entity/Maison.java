@@ -15,7 +15,7 @@ public class Maison implements Serializable{
 	@Column(name = "nomMaison")
 	private String nomMaison; 
 	
-	@OneToMany(mappedBy="maisonvoit")
+	@OneToMany(mappedBy="maison")
 	private List<Voiture> voitures; 
   
 	/*

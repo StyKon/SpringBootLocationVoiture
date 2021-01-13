@@ -33,28 +33,28 @@ public class Voiture implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "codeModel" )
-	private Model modelvoit;
+	private Model model;
 
 	@ManyToOne
 	@JoinColumn(name = "codeMaison")
-	private Maison maisonvoit;
+	private Maison maison;
 	
 
 	@OneToMany(mappedBy="voitures")
-	private List<Contrat> contrat;
+	private List<Contrat> contrats;
 	public Voiture(){}
 
 	public Voiture(Long idVoiture, Date datemisecirculation, String numcartegrise,
-				   int kilometrage, String matricule, Marque marque, Model modelvoit,
-				   Maison maisonvoit) {
+				   int kilometrage, String matricule, Marque marque, Model model,
+				   Maison maison) {
 		this.idVoiture = idVoiture;
 		this.datemisecirculation = datemisecirculation;
 		this.numcartegrise = numcartegrise;
 		this.kilometrage = kilometrage;
 		this.matricule = matricule;
 		this.marque = marque;
-		this.modelvoit = modelvoit;
-		this.maisonvoit = maisonvoit;
+		this.model = model;
+		this.maison = maison;
 	}
 
 	public Long getIdVoiture() {
@@ -105,23 +105,26 @@ public class Voiture implements Serializable{
 		this.marque = marque;
 	}
 
-
-
-	public Model getModelvoit() {
-		return modelvoit;
+	public Model getModel() {
+		return model;
 	}
 
-	public void setModelvoit(Model modelvoit) {
-		this.modelvoit = modelvoit;
+	public void setModel(Model model) {
+		this.model = model;
 	}
 
-	public Maison getMaisonvoit() {
-		return maisonvoit;
+	public Maison getMaison() {
+		return maison;
 	}
 
-	public void setMaisonvoit(Maison maisonvoit) {
-		this.maisonvoit = maisonvoit;
+	public void setMaison(Maison maison) {
+		this.maison = maison;
 	}
 
+	
+
+
+
+	
 	
 }

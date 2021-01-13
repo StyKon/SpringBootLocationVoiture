@@ -16,7 +16,7 @@ public class Model implements Serializable {
 
 	@Column(name = "nomModel")
 	private String nomModel;
-	@OneToMany(mappedBy="modelvoit")
+	@OneToMany(mappedBy="model")
 	private List<Voiture> voitures;
 
 	public Model(){}

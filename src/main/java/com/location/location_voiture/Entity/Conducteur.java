@@ -41,7 +41,8 @@ public class Conducteur implements Serializable {
 	private Date  dateCreationConducteur;
 
 	@OneToMany(mappedBy="conducteurs")
-	private List<Contrat> contrat; 
+	private List<Contrat> contrats;
+	
 	public Conducteur() {}
 
 	public Conducteur(Long codeConducteur, String prenomNomConducteur, Date dateNaissance,

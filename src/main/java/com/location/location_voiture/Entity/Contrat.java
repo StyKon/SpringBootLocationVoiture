@@ -12,7 +12,6 @@ import java.util.Set;
 
 
 @Entity
-
 @Table(name = "Contrat")
 public class Contrat  implements Serializable {
 
@@ -32,26 +31,26 @@ public class Contrat  implements Serializable {
 	@Column(name = "montantAvance")
 	private Double montantAvance;
 
-	@CreatedDate
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date  dateCreationContrat;
 
-	@OneToMany
-	@Size(min=1, max=2)
-    private Set<Conducteur> conducteurs;
 
-    @ManyToOne
+
+	@ManyToOne
     @JoinColumn(name="numSociete")
     private Societe societe;
 
-	@ManyToMany
-	private List<Voiture> voitures;
+	@ManyToOne
+	@JoinColumn(name="idVoiture")
+	private Voiture voitures;
+	@ManyToOne
+	@JoinColumn(name="codeConducteur")
+    private Conducteur conducteurs;
 	public Contrat() {}
-
-
 	public Contrat(Long numContrat, Date dateContrat, Date dateDebutLocation, Date dateFinLocation,
-			Double prixUnitaireJour, Double prixTotal, Double montantAvance, Date dateCreationContrat,
-			@Size(min = 1, max = 2) Set<Conducteur> conducteurs, Societe societe, List<Voiture> voitures) {
+			Double prixUnitaireJour, Double prixTotal, Double montantAvance, Date dateCreationContrat, Societe societe,
+			Voiture voitures, Conducteur conducteurs) {
 		super();
 		this.numContrat = numContrat;
 		this.dateContrat = dateContrat;
@@ -61,102 +60,86 @@ public class Contrat  implements Serializable {
 		this.prixTotal = prixTotal;
 		this.montantAvance = montantAvance;
 		this.dateCreationContrat = dateCreationContrat;
-		this.conducteurs = conducteurs;
 		this.societe = societe;
 		this.voitures = voitures;
+		this.conducteurs = conducteurs;
 	}
-
-
 	public Long getNumContrat() {
 		return numContrat;
 	}
-
 	public void setNumContrat(Long numContrat) {
 		this.numContrat = numContrat;
 	}
-
 	public Date getDateContrat() {
 		return dateContrat;
 	}
-
 	public void setDateContrat(Date dateContrat) {
 		this.dateContrat = dateContrat;
 	}
-
 	public Date getDateDebutLocation() {
 		return dateDebutLocation;
 	}
-
 	public void setDateDebutLocation(Date dateDebutLocation) {
 		this.dateDebutLocation = dateDebutLocation;
 	}
-
 	public Date getDateFinLocation() {
 		return dateFinLocation;
 	}
-
 	public void setDateFinLocation(Date dateFinLocation) {
 		this.dateFinLocation = dateFinLocation;
 	}
-
 	public Double getPrixUnitaireJour() {
 		return prixUnitaireJour;
 	}
-
 	public void setPrixUnitaireJour(Double prixUnitaireJour) {
 		this.prixUnitaireJour = prixUnitaireJour;
 	}
-
 	public Double getPrixTotal() {
 		return prixTotal;
 	}
-
 	public void setPrixTotal(Double prixTotal) {
 		this.prixTotal = prixTotal;
 	}
-
 	public Double getMontantAvance() {
 		return montantAvance;
 	}
-
 	public void setMontantAvance(Double montantAvance) {
 		this.montantAvance = montantAvance;
 	}
-
 	public Date getDateCreationContrat() {
 		return dateCreationContrat;
 	}
-
 	public void setDateCreationContrat(Date dateCreationContrat) {
 		this.dateCreationContrat = dateCreationContrat;
 	}
-
-
 	public Societe getSociete() {
 		return societe;
 	}
-
 	public void setSociete(Societe societe) {
 		this.societe = societe;
 	}
-
-
-
-	public Set<Conducteur> getConducteurs() {
-		return conducteurs;
-	}
-
-	public void setConducteurs(Set<Conducteur> conducteurs) {
-		this.conducteurs = conducteurs;
-	}
-
-
-	public List<Voiture> getVoitures() {
+	public Voiture getVoitures() {
 		return voitures;
 	}
-
-
-	public void setVoitures(List<Voiture> voitures) {
+	public void setVoitures(Voiture voitures) {
 		this.voitures = voitures;
 	}
+	public Conducteur getConducteurs() {
+		return conducteurs;
+	}
+	public void setConducteurs(Conducteur conducteurs) {
+		this.conducteurs = conducteurs;
+	}
+	
+
+	@PrePersist
+	private void onCreate() {
+		dateCreationContrat = new Date();
+	}
+	
+
+
+
+
+	
 }

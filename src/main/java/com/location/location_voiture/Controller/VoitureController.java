@@ -52,9 +52,9 @@ public class VoitureController {
 		V.setKilometrage(voiture.getKilometrage());
 		V.setMatricule(voiture.getMatricule());
 		V.setNumcartegrise(voiture.getNumcartegrise());
-		V.setMaisonvoit(voiture.getMaisonvoit());
+		V.setMaison(voiture.getMaison());
 		V.setMarque(voiture.getMarque());
-		V.setModelvoit(voiture.getModelvoit());
+		V.setModel(voiture.getModel());
 		VoitureRepository.save(voiture);
         return ResponseEntity.ok(voiture);
     }
