@@ -48,6 +48,7 @@ public class MarqueController {
 	                .orElseThrow(()->new NotFoundException("Marque avec "+codeMarque+" n'existe pas!"));
 	
 		M.setNomMarque(marque.getNomMarque());
+		M.setMaison(marque.getMaison());
 		MarqueRepository.save(marque);
         return ResponseEntity.ok(marque);
 	}
